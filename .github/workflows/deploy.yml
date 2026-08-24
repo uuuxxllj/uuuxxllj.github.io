@@ -16,10 +16,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PRIVATE source (REDACTED)
+      - name: Checkout private source
         uses: actions/checkout@v4
         with:
-          repository: uuuxxllj/REDACTED
+          repository: ${{ secrets.SRC_REPO }}
           token: ${{ secrets.SRC_PAT }}
           submodules: recursive
 
