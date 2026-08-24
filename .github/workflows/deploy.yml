@@ -1,30 +1,3 @@
-# ============================================================================
-# 部署工作流（免费版路线 A）
-#
-# 放到【部署仓库 uuuxxllj.github.io】的  .github/workflows/deploy.yml
-# （注意：是部署仓库，不是本源码仓库）
-#
-# 工作原理：
-#   1. uuuxxllj.github.io 保持公开（免费版用户页仓库必须公开），但里面只放
-#      本 workflow，不含任何文章内容；
-#   2. workflow 用 SRC_PAT 拉取【私有】源码仓库 REDACTED，本地 Hugo 构建；
-#   3. 产物经 actions/deploy-pages 推到 Pages 服务（不写进任何可浏览分支），
-#      因此没有任何公开仓库能扒到文章 URL。
-#
-# 触发方式：
-#   - repository_dispatch (type=deploy)：由 REDACTED 的 notify 工作流推送时触发
-#   - workflow_dispatch：在 uuuxxllj.github.io 的 Actions 页手动 “Run workflow”
-#
-# 前置准备（GitHub 网页端）：
-#   1. REDACTED 已设为私有（你已完成）。
-#   2. 建一个经典 PAT（repo 范围，对两个仓库都有权限），分别存为：
-#        - uuuxxllj.github.io 的 Actions Secret：SRC_PAT
-#        - REDACTED      的 Actions Secret：DEPLOY_PAT
-#      （同一串值即可，因为需要 REDACTED 读权限 + uuuxxllj.github.io 的 dispatch 权限）
-#   3. uuuxxllj.github.io → Settings → Pages → Source 选 “GitHub Actions”。
-#   4. 停掉原来把 public/ 推到 deploy 远程的分支部署步骤。
-# ============================================================================
-
 name: Deploy Hugo to Pages
 
 on:
